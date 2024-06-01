@@ -40,7 +40,7 @@ namespace WindowsFormsApp1
 
         public void GenerateMap()
         {
-            {
+            { 
                 Random rnd = new Random();
                 int numShuffles = rnd.Next(1, 6);
 
@@ -55,7 +55,7 @@ namespace WindowsFormsApp1
             }
             mapcopi = map;
             CreateMap();
-            HideCells();
+             
             timer1.Enabled = true;
         }
 
@@ -82,8 +82,10 @@ namespace WindowsFormsApp1
                             }
                             if (N <= 0)
                                 break;
+
                         }
                     }
+
                     if (N <= 0)
                         break;
                 }
@@ -132,8 +134,7 @@ namespace WindowsFormsApp1
                     button.Text = map[i, j].ToString();
                     button.Click += OnCellPressed;
                     button.Location = new Point(j * sizeButton, i * sizeButton);
-
-                    // Присваиваем Tag с индексами i и j
+                    button.Enabled = false;
                     button.Tag = new Point(i, j);
 
                     this.Controls.Add(button);
@@ -154,7 +155,6 @@ namespace WindowsFormsApp1
 
         }
 
-
         private void SaveTimeToFile()
         {
             string filePath = "sudoku_records.txt";
@@ -174,8 +174,6 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Произошла ошибка при сохранении времени: " + ex.Message);
             }
         }
-
-
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -201,6 +199,8 @@ namespace WindowsFormsApp1
                     SaveTimeToFile();
                     Предыгровое_меню menuWindow = new Предыгровое_меню();
                     menuWindow.Show();
+                    this.Close();
+
                 }
 
                 for (int i = 0; i < n * n; i++)
@@ -225,11 +225,11 @@ namespace WindowsFormsApp1
                 {
                     if (mapcopi[i, j].ToString() != buttons[i, j].Text)
                     {
-                        return false; // Найдено отличие, решение Sudoku неверно
+                        return false;
                     }
                 }
             }
-            return true; // Отличий не найдено, решение Sudoku верно
+            return true;
         }
         private void Record_Click(object sender, EventArgs e)
         {
