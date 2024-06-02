@@ -20,12 +20,12 @@ namespace WindowsFormsApp1
             textBox1.TextChanged += textBox1_TextChanged;
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        void textBox1_TextChanged(object sender, EventArgs e)
         {
             LoadTextFromFile("sudoku_records.txt");
         }
 
-        private void LoadTextFromFile(string filePath)
+        void LoadTextFromFile(string filePath)
         {
             try
             {

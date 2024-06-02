@@ -17,8 +17,8 @@ namespace WindowsFormsApp1
         int time = 0;
         const int n = 3;
         const int sizeButton = 50;
-        private int[,] mapcopi = new int[n * n, n * n];
-        private int[,] map = new int[,]
+        int[,] mapcopi = new int[n * n, n * n];
+        int[,] map = new int[,]
          {
             {5, 3, 4, 6, 7, 8, 9, 1, 2},
             {6, 7, 2, 1, 9, 5, 3, 4, 8},
@@ -30,7 +30,7 @@ namespace WindowsFormsApp1
             {2, 8, 7, 4, 1, 9, 6, 3, 5},
             {3, 4, 5, 2, 8, 6, 1, 7, 9}
          };
-        public Button[,] buttons = new Button[n * n, n * n];
+        Button[,] buttons = new Button[n * n, n * n];
 
         public Game()
         {
@@ -38,7 +38,7 @@ namespace WindowsFormsApp1
             GenerateMap();
         }
 
-        public void GenerateMap()
+        void GenerateMap()
         {
             { 
                 Random rnd = new Random();
@@ -55,12 +55,12 @@ namespace WindowsFormsApp1
             }
             mapcopi = map;
             CreateMap();
-             
+            HideCells();
             timer1.Enabled = true;
         }
 
 
-        public void HideCells()
+        void HideCells()
         {
             int N = 40;
             Random r = new Random();
@@ -122,7 +122,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        public void CreateMap()
+        void CreateMap()
         {
             for (int i = 0; i < n * n; i++)
             {
@@ -142,7 +142,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        public void OnCellPressed(object sender, EventArgs e)
+        void OnCellPressed(object sender, EventArgs e)
         {
             Button pressedButton = sender as Button;
             Point buttonIndex = (Point)pressedButton.Tag;
@@ -155,7 +155,7 @@ namespace WindowsFormsApp1
 
         }
 
-        private void SaveTimeToFile()
+        void SaveTimeToFile()
         {
             string filePath = "sudoku_records.txt";
             string currentTime = timer.Text;
@@ -217,7 +217,7 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Неверно! Попробуйте еще раз.");
             }
         }
-        private bool CheckSudokuSolution()
+        bool CheckSudokuSolution()
         {
             for (int i = 0; i < n * n; i++)
             {
