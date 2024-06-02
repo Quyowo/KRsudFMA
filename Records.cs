@@ -31,19 +31,15 @@ namespace WindowsFormsApp1
             {
                 if (File.Exists(filePath))
                 {
-                    // Читаем строки из файла
                     string[] lines = File.ReadAllLines(filePath);
 
-                    // Создаем список для хранения записей
                     List<string> recordsList = new List<string>();
 
-                    // Парсим каждую строку и добавляем в список
                     foreach (string line in lines)
                     {
                         recordsList.Add(line);
                     }
 
-                    // Сортируем записи по времени в возрастающем порядке
                     recordsList.Sort((a, b) =>
                     {
                         TimeSpan timeA = TimeSpan.Parse(a);
@@ -51,14 +47,11 @@ namespace WindowsFormsApp1
                         return timeA.CompareTo(timeB);
                     });
 
-                    // Формируем текст для отображения в TextBox с добавлением номеров записей
                     StringBuilder sb = new StringBuilder();
                     for (int i = 0; i < recordsList.Count; i++)
                     {
                         sb.AppendLine($"{i + 1}) {recordsList[i]}");
                     }
-
-                    // Устанавливаем отсортированный текст в TextBox
                     textBox1.Text = sb.ToString();
                 }
                 else
